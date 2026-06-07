@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:16
+    container_name: rm562822-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: meteosolution_db
+    ports:
+      - "5445:5432"
+    volumes:
+      - meteosolution_data:/var/lib/postgresql/data
+    networks:
+      - meteosolution-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: ./MeteoSolution.API
+      dockerfile: Dockerfile
+    container_name: rm562822-app
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=meteosolution_db;Username=postgres;Password=postgres
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - meteosolution-network
+
+volumes:
+  meteosolution_data:
+    name: meteosolution_data
+
+networks:
+  meteosolution-network:
+    name: meteosolution-network

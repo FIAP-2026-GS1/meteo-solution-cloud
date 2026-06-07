@@ -1,0 +1,51 @@
+# ==============================================
+# .gitignore — Meteo Solution Cloud
+# .NET 10 + Docker
+# ==============================================
+
+# Build outputs
+bin/
+obj/
+
+# .NET user-specific files
+*.user
+*.suo
+*.userprefs
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Publish output
+publish/
+out/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Runtime / logs
+*.log
+*.tmp
+
+# Secrets e configuração local (NUNCA versionar)
+appsettings.Development.json
+*.pfx
+*.p12
+secrets.json
+.env
+.env.*
+
+# Docker
+.dockerignore
+
+# SSH keys geradas pelo Azure CLI
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
