@@ -18,20 +18,20 @@ Este repositório contém a infraestrutura containerizada da API .NET, com dois 
 
 ## 🏗️ Arquitetura Macro
 
-![Arquitetura Macro — Sentinel Alert](docs/architecture.png)
+![Arquitetura Macro — Sentinel Alert](docs/meteosolution.drawio.png)
 
 ---
 
 ## 🛠️ Stack
 
-| Camada | Tecnologia |
-|---|---|
-| API | .NET 10, ASP.NET Core Web API |
-| ORM | Entity Framework Core 10 (Code First) |
-| Banco | PostgreSQL 16 |
-| Containerização | Docker, Docker Compose |
-| Nuvem | Microsoft Azure (VM Ubuntu 22.04) |
-| Infraestrutura | Azure CLI (deploy via script bash) |
+| Camada          | Tecnologia                            |
+| --------------- | ------------------------------------- |
+| API             | .NET 10, ASP.NET Core Web API         |
+| ORM             | Entity Framework Core 10 (Code First) |
+| Banco           | PostgreSQL 16                         |
+| Containerização | Docker, Docker Compose                |
+| Nuvem           | Microsoft Azure (VM Ubuntu 22.04)     |
+| Infraestrutura  | Azure CLI (deploy via script bash)    |
 
 ---
 
@@ -60,6 +60,7 @@ meteo-solution-cloud/
 ## 🐳 Containers
 
 ### Container da Aplicação — `rm562822-app`
+
 - Imagem personalizada via Dockerfile multi-stage
 - Usuário não-root: `appuser`
 - Diretório de trabalho: `/app`
@@ -67,6 +68,7 @@ meteo-solution-cloud/
 - Variável de ambiente: `ASPNETCORE_ENVIRONMENT=Production`
 
 ### Container do Banco de Dados — `rm562822-db`
+
 - Imagem: `postgres:16`
 - Porta mapeada: `5445:5432`
 - Volume nomeado: `meteosolution_data`
@@ -101,6 +103,7 @@ chmod +x deploy-azure.sh
 ```
 
 O script executa automaticamente:
+
 1. Autentica na Azure e define a subscription
 2. Cria o Resource Group `rg-meteosolution-gs` em `canadacentral`
 3. Cria a VM Ubuntu 22.04 (`Standard_B2als_v2`)
@@ -138,6 +141,7 @@ docker compose up -d
 ```
 
 O Docker irá:
+
 - Baixar a imagem `postgres:16`
 - Construir a imagem da API a partir do Dockerfile
 - Criar a rede `meteosolution-network`
@@ -193,6 +197,7 @@ http://<IP_PUBLICO>:8080/swagger
 ```
 
 A API expõe 20 endpoints CRUD para as entidades:
+
 - `Pais` → `Estado` → `Cidade` → `RegiaoMonitorada`
 
 ---
@@ -210,28 +215,28 @@ Digite `sim` para confirmar. Todos os recursos do Resource Group serão removido
 
 ## 🔌 Endpoints da API
 
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | `/api/Pais` | Listar países |
-| POST | `/api/Pais` | Criar país |
-| GET | `/api/Pais/{id}` | Buscar país por ID |
-| PUT | `/api/Pais/{id}` | Atualizar país |
-| DELETE | `/api/Pais/{id}` | Remover país |
-| GET | `/api/Estado` | Listar estados |
-| POST | `/api/Estado` | Criar estado |
-| GET | `/api/Estado/{id}` | Buscar estado por ID |
-| PUT | `/api/Estado/{id}` | Atualizar estado |
-| DELETE | `/api/Estado/{id}` | Remover estado |
-| GET | `/api/Cidade` | Listar cidades |
-| POST | `/api/Cidade` | Criar cidade |
-| GET | `/api/Cidade/{id}` | Buscar cidade por ID |
-| PUT | `/api/Cidade/{id}` | Atualizar cidade |
-| DELETE | `/api/Cidade/{id}` | Remover cidade |
-| GET | `/api/RegiaoMonitorada` | Listar regiões |
-| POST | `/api/RegiaoMonitorada` | Criar região |
-| GET | `/api/RegiaoMonitorada/{id}` | Buscar região por ID |
-| PUT | `/api/RegiaoMonitorada/{id}` | Atualizar região |
-| DELETE | `/api/RegiaoMonitorada/{id}` | Remover região |
+| Método | Rota                         | Descrição            |
+| ------ | ---------------------------- | -------------------- |
+| GET    | `/api/Pais`                  | Listar países        |
+| POST   | `/api/Pais`                  | Criar país           |
+| GET    | `/api/Pais/{id}`             | Buscar país por ID   |
+| PUT    | `/api/Pais/{id}`             | Atualizar país       |
+| DELETE | `/api/Pais/{id}`             | Remover país         |
+| GET    | `/api/Estado`                | Listar estados       |
+| POST   | `/api/Estado`                | Criar estado         |
+| GET    | `/api/Estado/{id}`           | Buscar estado por ID |
+| PUT    | `/api/Estado/{id}`           | Atualizar estado     |
+| DELETE | `/api/Estado/{id}`           | Remover estado       |
+| GET    | `/api/Cidade`                | Listar cidades       |
+| POST   | `/api/Cidade`                | Criar cidade         |
+| GET    | `/api/Cidade/{id}`           | Buscar cidade por ID |
+| PUT    | `/api/Cidade/{id}`           | Atualizar cidade     |
+| DELETE | `/api/Cidade/{id}`           | Remover cidade       |
+| GET    | `/api/RegiaoMonitorada`      | Listar regiões       |
+| POST   | `/api/RegiaoMonitorada`      | Criar região         |
+| GET    | `/api/RegiaoMonitorada/{id}` | Buscar região por ID |
+| PUT    | `/api/RegiaoMonitorada/{id}` | Atualizar região     |
+| DELETE | `/api/RegiaoMonitorada/{id}` | Remover região       |
 
 ---
 
@@ -249,10 +254,10 @@ Digite `sim` para confirmar. Todos os recursos do Resource Group serão removido
 
 ## 👥 Integrantes
 
-| Nome | RM |
-|---|---|
+| Nome                        | RM        |
+| --------------------------- | --------- |
 | Ana Carolina Pereira Fontes | RM 562145 |
 | João Victor Nascimento Adão | RM 563409 |
-| Johnny Dias Mathias Junior | RM 566516 |
-| Luisa Ganasevici de Abreu | RM 563403 |
-| Matheus Moya de Oliveira | RM 562822 |
+| Johnny Dias Mathias Junior  | RM 566516 |
+| Luisa Ganasevici de Abreu   | RM 563403 |
+| Matheus Moya de Oliveira    | RM 562822 |
