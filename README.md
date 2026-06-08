@@ -18,35 +18,7 @@ Este repositório contém a infraestrutura containerizada da API .NET, com dois 
 
 ## 🏗️ Arquitetura Macro
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│  Azure for Students  •  canadacentral                       │
-│  Resource Group: rg-meteosolution-gs                        │
-│                                                             │
-│  ┌───────────────────────────────────────────────────────┐  │
-│  │  VM: vm-rm562822-meteosolution                        │  │
-│  │  Ubuntu 22.04 LTS  •  Standard_B2als_v2              │  │
-│  │  Docker 29.5  •  Docker Compose 2.5                  │  │
-│  │                                                       │  │
-│  │  ┌─── meteosolution-network (bridge) ──────────────┐  │  │
-│  │  │                                                 │  │  │
-│  │  │  ┌──────────────────┐   ┌───────────────────┐  │  │  │
-│  │  │  │  rm562822-app    │   │   rm562822-db     │  │  │  │
-│  │  │  │  .NET 10 API     │──▶│   PostgreSQL 16   │  │  │  │
-│  │  │  │  porta 8080      │   │   porta 5445:5432 │  │  │  │
-│  │  │  │  USER appuser    │   │   volume nomeado  │  │  │  │
-│  │  │  └──────────────────┘   └───────────────────┘  │  │  │
-│  │  └─────────────────────────────────────────────────┘  │  │
-│  │                                                       │  │
-│  │  NSG: porta 22 (SSH) • porta 8080 (API)              │  │
-│  └───────────────────────────────────────────────────────┘  │
-│                         │                                   │
-│               IP Público: <IP_PUBLICO>                     │
-└─────────────────────────────────────────────────────────────┘
-         │
-   Usuário / navegador
-   http://<IP_PUBLICO>:8080/swagger
-```
+![Arquitetura Macro — Sentinel Alert](docs/architecture.png)
 
 ---
 
@@ -279,4 +251,8 @@ Digite `sim` para confirmar. Todos os recursos do Resource Group serão removido
 
 | Nome | RM |
 |---|---|
-| Matt | 562822 |
+| Ana Carolina Pereira Fontes | RM 562145 |
+| João Victor Nascimento Adão | RM 563409 |
+| Johnny Dias Mathias Junior | RM 566516 |
+| Luisa Ganasevici de Abreu | RM 563403 |
+| Matheus Moya de Oliveira | RM 562822 |
